@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.escapecraft</groupId>
+  <artifactId>EscapeUtilsg</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+  <name>EscapeUtils</name>
+  <url></url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spigot.version>1.8.7-R0.1-SNAPSHOT</spigot.version>
+  </properties>
+
+  <repositories>
+    <!-- Repository for Spigot -->
+    <repository>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/groups/public</url>
+    </repository>
+    <repository>
+      <id>escapecraft-repo</id>
+      <url>http://dev.escapecraft.com/maven</url>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>dev-repo</id>
+      <name>dev.escapecraft.com Releases</name>
+      <url>scp://dev.escapecraft.com/var/www/maven</url>
+    </repository>
+    <snapshotRepository>
+      <id>dev-repo-snap</id>
+      <name>dev.escapecraft.com Snapshots</name>
+      <url>scp://dev.escapecraft.com/var/www/maven</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.spigotmc</groupId>
+      <artifactId>spigot-api</artifactId>
+      <version>${spigot.version}</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <targetPath>.</targetPath>
+        <filtering>true</filtering>
+        <directory>${basedir}/src/main/resources/</directory>
+        <includes>
+          <include>plugin.yml</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+</project>
