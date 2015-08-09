@@ -1,13 +1,14 @@
-package net.escapecraft.escapeplug;
+package net.escapecraft.escapeutil;
 
+import net.serubin.PosComponent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.escapecraft.component.ComponentManager;
 import net.escapecraft.component.Log;
 
-public class EscapePlug extends JavaPlugin {
+public class EscapeUtil extends JavaPlugin {
 
-    public static EscapePlug self = null;
+    public static EscapeUtil self = null;
     private static final String logPrefix = "EscapeUtil";
     private Log log = new Log(logPrefix);
     private ComponentManager componentManager;
@@ -36,7 +37,7 @@ public class EscapePlug extends JavaPlugin {
 
         // start the component manager
         componentManager = new ComponentManager(this, log);
-        //componentManager.addComponent(AfkBooterComponent.class);
+        componentManager.addComponent(PosComponent.class);
 
         // start components
         componentManager.startupComponents();

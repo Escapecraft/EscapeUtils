@@ -1,6 +1,6 @@
 package net.escapecraft.component;
 
-import net.escapecraft.escapeplug.EscapePlug;
+import net.escapecraft.escapeutil.EscapeUtil;
 
 /**
  * Represents an abstract component of EscapePlug.
@@ -31,7 +31,7 @@ public abstract class AbstractComponent {
      * Called upon being enabled.
      * @param plugin instance of EscapePlug
      */
-    public abstract boolean enable(EscapePlug plugin);
+    public abstract boolean enable(EscapeUtil plugin);
 
     /**
      * Called during onDisable().

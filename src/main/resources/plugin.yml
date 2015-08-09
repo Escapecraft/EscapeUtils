@@ -1,0 +1,23 @@
+name: EscapeUtil
+main: net.escapecraft.escapeutil.EscapeUtil
+version: ${project.version}
+commands:
+    pos:
+        description: Returns position or target player's position
+        usage: /<command> [player]
+permissions:
+  escapeutil.*:
+    description: Supernode for EscapeUtil commands.
+    children:
+      escapeplug.pos: true
+  escapeutil.pos:
+    description: Use all pos features
+    children:
+      escapeutil.pos.self: true
+      escapeutil.pos.other: true
+  escapeutil.pos.self:
+    description: Use pos command on self
+    default: op
+  escapeutil.pos.other:
+    description: Use pos command on other
+    default: op

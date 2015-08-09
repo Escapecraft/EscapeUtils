@@ -5,11 +5,11 @@ import java.util.HashMap;
 
 import org.bukkit.command.CommandExecutor;
 
-import net.escapecraft.escapeplug.EscapePlug;
+import net.escapecraft.escapeutil.EscapeUtil;
 
 public class ComponentManager {
 
-    private EscapePlug plugin;
+    private EscapeUtil plugin;
     private Log log;
 
     private HashMap<String, Class<? extends AbstractComponent>> components = new HashMap<String, Class<? extends AbstractComponent>>();
@@ -18,7 +18,7 @@ public class ComponentManager {
     /**
      * Component Manager object.
      */
-    public ComponentManager(EscapePlug plugin, Log log) {
+    public ComponentManager(EscapeUtil plugin, Log log) {
         this.plugin = plugin;
         this.log = log;
     }
