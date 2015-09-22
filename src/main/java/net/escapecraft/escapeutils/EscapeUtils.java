@@ -1,20 +1,20 @@
-package net.escapecraft.escapeutil;
-
-import net.serubin.PosComponent;
-import org.bukkit.plugin.java.JavaPlugin;
+package net.escapecraft.escapeutils;
 
 import net.escapecraft.component.ComponentManager;
 import net.escapecraft.component.Log;
+import net.serubin.LastComponent.LastComponent;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class EscapeUtil extends JavaPlugin {
+public class EscapeUtils extends JavaPlugin {
 
-    public static EscapeUtil self = null;
+    public static EscapeUtils self = null;
     private static final String logPrefix = "EscapeUtil";
     private Log log = new Log(logPrefix);
     private ComponentManager componentManager;
 
     /**
      * Gets the plugin log prefix.
+     *
      * @return the log prefix string
      */
     public String getLogPrefix() {
@@ -37,7 +37,7 @@ public class EscapeUtil extends JavaPlugin {
 
         // start the component manager
         componentManager = new ComponentManager(this, log);
-        componentManager.addComponent(PosComponent.class);
+        componentManager.addComponent(LastComponent.class);
 
         // start components
         componentManager.startupComponents();
@@ -56,8 +56,17 @@ public class EscapeUtil extends JavaPlugin {
     }
 
     /**
+     * Returns the log
+     *
+     * @return the log
+     */
+    public Log getLog() {
+        return this.log;
+    }
+
+    /**
      * Returns the component manager.
-     * 
+     *
      * @return the component manager
      */
     public ComponentManager getComponentManager() {
