@@ -1,3 +1,6 @@
-plugin:
-    posreport:
+EscapeUtils:
+    last:
+      death:
         enabled: true
+      login:
+        enabled: false

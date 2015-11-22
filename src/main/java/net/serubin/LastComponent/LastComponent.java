@@ -41,12 +41,15 @@ public class LastComponent extends AbstractComponent implements CommandExecutor 
 
 	// Message strings
 	private final String PERMISSION_ERROR = ChatColor.RED + "You don't have permission.";
+	private final String HELP_MESSAGE = ChatColor.YELLOW + "/last <login | death>";
 
 	// Data Provider
 	protected LastDataProvider lastData;
 	protected LastPlayerListener lastListener;
+    private boolean login_enabled;
+    private boolean death_enabled;
 
-	/**
+    /**
 	 * Called upon being enabled.
 	 *
 	 * @param plugin instance of EscapePlug
@@ -57,9 +60,12 @@ public class LastComponent extends AbstractComponent implements CommandExecutor 
 
 		plugin.getComponentManager().registerCommands(this);
 
-		lastData = new LastDataProvider(plugin, this);
-		lastData.fetchData();
-		lastListener = new LastPlayerListener(plugin, this);
+        this.death_enabled = plugin.getConfig().getBoolean("EscapeUtils.last.death.enabled");
+        this.login_enabled = plugin.getConfig().getBoolean("EscapeUtils.last.login.enabled");
+
+		this.lastData = new LastDataProvider(plugin, this);
+		this.lastData.fetchData();
+		this.lastListener = new LastPlayerListener(plugin, this);
 
 		return true;
 	}
@@ -81,8 +87,15 @@ public class LastComponent extends AbstractComponent implements CommandExecutor 
 		String command = args[0];
 
 		if (command.equalsIgnoreCase(this.COMMAND_HELP)) {  // Help!
-
+			sendHelp(sender);
 		} else if (command.equalsIgnoreCase(this.COMMAND_LOGIN)) {  // Login command
+
+            if(!login_enabled) {
+                sender.sendMessage(ChatColor.RED + "Command disabled.");
+                return true;
+            }
+
+
 			if (args.length > 1) {
 				String playerName = args[1];
 
@@ -114,6 +127,11 @@ public class LastComponent extends AbstractComponent implements CommandExecutor 
 			}
 		} else if (command.equalsIgnoreCase(this.COMMAND_DEATH)) {  // Death command
 
+            if(!death_enabled) {
+                sender.sendMessage(ChatColor.RED + "Command disabled.");
+                return true;
+            }
+
 			if (args.length == 1 && sender instanceof Player) {
 				Player player = (Player) sender;
 				UUID uuid = player.getUniqueId();
@@ -129,11 +147,12 @@ public class LastComponent extends AbstractComponent implements CommandExecutor 
 				return true;
 			}
 		}
+		sendHelp(sender);
 		return true;
 	}
 
 	private void sendHelp(CommandSender sender) {
-
+		sender.sendMessage(HELP_MESSAGE);
 	}
 
 	protected void logInfo(String msg) {

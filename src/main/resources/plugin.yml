@@ -9,7 +9,7 @@ permissions:
   escapeutils.*:
     description: Supernode for EscapeUtils commands.
     children:
-      escapeplug.pos: true
+      escapeplug.last: true
   escapeutils.last:
     description: Use all LastReport features
     children:
